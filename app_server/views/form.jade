@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Secure My Campus - Complaint Box
+    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="/stylesheets/complaint_box.css")
+  body
+    // Navbar
+    .navbar
+      .navbar-left
+        .logo-container
+          img(src="/images/Campus.png", alt="Secure Campus Logo")
+          div
+            span Secure
+            span Campus
+        .nav-links
+          a(href="/") Home
+          a(href="/complaint") Complaint Box
+          if email
+            a(href="/form") Form Page
+            a(href="/help") Help Center
+      if email
+        .profile-navbar-right(style="position:absolute; right:20px; top:50%; transform:translateY(-50%);")
+          a(href="/profile")
+            img(src="/images/profile.png", alt="Profile", style="width:40px;height:40px;border-radius:50%;")
+      
+    // Content
+    .content
+      .profile-top-right
+
+      .form-container
+        h2 Complaint Box
+        form(action="/submit-incident", method="post", enctype="multipart/form-data")
+          label(for="name") Name
+          input(type="text", id="name", name="name", required=true)
+          label(for="phone") Phone Number
+          input(type="tel", id="phone", name="phone", required=true, pattern="[0-9]{10}")
+          label(for="date") Date
+          input(type="date", id="date", name="date", required=true)
+          label(for="category") Complaint Type
+          select(id="category", name="category", required=true)
+            option(value="") -- Select Complaint Type --
+            option(value="harassment") Harassment
+            option(value="food") Food Issue
+            option(value="lost") Lost and Found
+            option(value="hostel") Hostel Issue
+          label(for="location") Location
+          input(type="text", id="location", name="location", required=true)
+          label(for="description") Description
+          textarea(id="description", name="description", required=true)
+          label(for="photo") Upload Photos (at least 2)
+          input(type="file", id="photo", name="photo", accept="image/*", multiple=true, required=false)
+          button(type="submit", class="submit-btn")
+            span Submit Complaint
+    // Footer
+    footer
+      p © 2025 Secure My Campus | 
+        a(href="#") Privacy Policy
+        | 
+        a(href="#") Help Center
